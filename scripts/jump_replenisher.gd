@@ -7,7 +7,6 @@ func _on_body_entered(body):
 		$Sprite2D.visible = false
 		$CollisionShape2D.disabled = true
 
-		#queue_free()
 		game_manager.reset_jump()
 		$Timer.start()
 

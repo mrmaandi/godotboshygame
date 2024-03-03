@@ -134,6 +134,8 @@ animations = [{
 radius = 7.0
 
 [node name="Area2D" type="Area2D"]
+collision_layer = 2
+collision_mask = 5
 script = ExtResource("1_1oymu")
 
 [node name="Sprite2D" type="AnimatedSprite2D" parent="."]
@@ -142,6 +144,6 @@ sprite_frames = SubResource("SpriteFrames_4pvil")
 autoplay = "default"
 frame_progress = 0.573159
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
 position = Vector2(0, -2)
 shape = SubResource("CircleShape2D_co1bn")

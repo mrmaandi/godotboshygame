@@ -1,0 +1,42 @@
+[gd_scene load_steps=2 format=3 uid="uid://dbeb6tl74c2a8"]
+
+[ext_resource type="Texture2D" uid="uid://v2omlko1kjyw" path="res://sprites/gradient.png" id="1_efsve"]
+
+[node name="TextureRect" type="TextureRect"]
+offset_right = 432.0
+offset_bottom = 159.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("1_efsve")
+expand_mode = 1
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 57.0
+offset_top = 34.0
+offset_right = -41.0
+offset_bottom = -94.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 22
+text = "Jumping"
+autowrap_mode = 2
+
+[node name="Description" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 57.0
+offset_top = 81.0
+offset_right = -41.0
+offset_bottom = -35.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 14
+text = "You can press W or Space to jump
+Press twice to perform a double-jump"
+autowrap_mode = 2
