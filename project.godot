@@ -11,15 +11,22 @@ config_version=5
 [application]
 
 config/name="boshygame"
-run/main_scene="res://main.tscn"
+run/main_scene="res://scenes/main.tscn"
 config/features=PackedStringArray("4.2", "Mobile")
-config/icon="res://icon.svg"
+run/max_fps=144
+boot_splash/bg_color=Color(0.0352941, 0.0352941, 0.0352941, 1)
+boot_splash/show_image=false
+boot_splash/image="res://sprites/Jump (32x32).png"
+boot_splash/fullsize=false
+boot_splash/use_filter=false
+config/icon="res://sprites/icon.svg"
 
 [display]
 
-window/size/viewport_width=1280
-window/size/viewport_height=720
+window/size/viewport_width=1024
+window/size/viewport_height=576
 window/stretch/mode="canvas_items"
+window/vsync/vsync_mode=0
 
 [editor]
 
@@ -51,4 +58,4 @@ move_right={
 
 [rendering]
 
-renderer/rendering_method="mobile"
+renderer/rendering_method="gl_compatibility"
