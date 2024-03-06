@@ -11,12 +11,12 @@
 [ext_resource type="PackedScene" uid="uid://dk0ek63221orb" path="res://scenes/apple.tscn" id="5_stemb"]
 [ext_resource type="Texture2D" uid="uid://b7ordk6dxm23c" path="res://sprites/Brown.png" id="6_guxe8"]
 [ext_resource type="PackedScene" uid="uid://cxgcling3dfde" path="res://scenes/spikes.tscn" id="7_bcdgq"]
-[ext_resource type="Texture2D" uid="uid://b7385vjscby6w" path="res://sprites/Green.png" id="9_s812x"]
 [ext_resource type="PackedScene" uid="uid://ds2om8b03ueed" path="res://scenes/checkpoint.tscn" id="10_nohxg"]
 [ext_resource type="Texture2D" uid="uid://efhqunookldx" path="res://sprites/tree.png" id="12_h5j01"]
 [ext_resource type="Script" path="res://scripts/AppleTrigger.gd" id="14_3ouqk"]
 [ext_resource type="Texture2D" uid="uid://cg8baj1qfd3nr" path="res://sprites/Sprite-0002.png" id="14_8em86"]
 [ext_resource type="Texture2D" uid="uid://deluw11jlyy1s" path="res://sprites/Sprite-0001.png" id="14_nfilx"]
+[ext_resource type="AudioStream" uid="uid://cnhcxg6boj5el" path="res://audio/idea 4 game.wav" id="17_c6r20"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_a0udh"]
 size = Vector2(64, 112)
@@ -997,26 +997,16 @@ offset_bottom = 1728.0
 texture = ExtResource("1_je6u2")
 stretch_mode = 1
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="Background" type="CanvasLayer" parent="."]
 layer = -1
 
-[node name="TextureRect" type="TextureRect" parent="CanvasLayer"]
+[node name="TextureRect" type="TextureRect" parent="Background"]
 z_index = -1
 texture_filter = 1
 offset_right = 1024.0
 offset_bottom = 576.0
 texture = ExtResource("14_8em86")
 stretch_mode = 1
-
-[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
-visible = false
-
-[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
-
-[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
-texture_filter = 1
-texture = ExtResource("9_s812x")
-centered = false
 
 [node name="TerrainTileMap" type="TileMap" parent="."]
 texture_filter = 1
@@ -1067,5 +1057,10 @@ size_flags_horizontal = 4
 text = "You died!
 Press 'R' to reset"
 horizontal_alignment = 1
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("17_c6r20")
+volume_db = -20.0
+bus = &"Music"
 
 [connection signal="area_entered" from="Tutorial/Screen3/Entities/AppleTrigger/Area2D" to="Tutorial/Screen3/Entities/AppleTrigger" method="_on_area_2d_area_entered"]

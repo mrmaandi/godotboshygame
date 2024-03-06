@@ -1,10 +1,11 @@
-[gd_scene load_steps=38 format=3 uid="uid://b1vaglwnxpkux"]
+[gd_scene load_steps=39 format=3 uid="uid://b1vaglwnxpkux"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_5ao6q"]
 [ext_resource type="Texture2D" uid="uid://dfnv6b40ael5o" path="res://sprites/Idle (32x32).png" id="2_2cho2"]
 [ext_resource type="Texture2D" uid="uid://pq76glbumkx0" path="res://sprites/Desappearing (96x96).png" id="2_hebln"]
 [ext_resource type="Texture2D" uid="uid://d0o20mia85jqa" path="res://sprites/Jump (32x32).png" id="3_bva4m"]
 [ext_resource type="Texture2D" uid="uid://ltamv2q2xmxd" path="res://sprites/Run (32x32).png" id="4_vo0du"]
+[ext_resource type="AudioStream" uid="uid://cmut8nhnok5r2" path="res://audio/die.wav" id="6_kblaj"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_uk6yl"]
 size = Vector2(21, 24)
@@ -266,6 +267,10 @@ collision_mask = 2
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="HitBox"]
 position = Vector2(1.5, 4)
 shape = SubResource("RectangleShape2D_uk6yl")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_kblaj")
+bus = &"SFX"
 
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
 [connection signal="area_entered" from="HitBox" to="." method="_on_hit_box_area_entered"]

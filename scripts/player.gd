@@ -11,6 +11,8 @@ const MAX_VELOCITY = -1000
 
 @onready var sprite_2d = $AnimatedSprite2D
 @onready var game_manager = %GameManager
+@onready var audio_stream_player = $AudioStreamPlayer
+
 
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
@@ -60,7 +62,9 @@ func _physics_process(delta):
 
 func hit():
 	game_manager.handle_player_death()
+	audio_stream_player.play()
 	sprite_2d.animation = "death"
+	
 	
 func _on_hit_box_body_entered(body):
 	# only should collide with Damagable layer
