@@ -1,7 +1,8 @@
-[gd_scene load_steps=22 format=3 uid="uid://dskx3e1fhepfp"]
+[gd_scene load_steps=24 format=3 uid="uid://dskx3e1fhepfp"]
 
 [ext_resource type="Texture2D" uid="uid://bpwi30cx5rd1x" path="res://sprites/tile.png" id="1_je6u2"]
 [ext_resource type="Texture2D" uid="uid://b5yec4umy4tgs" path="res://sprites/Terrain (16x16).png" id="1_ldqx3"]
+[ext_resource type="Script" path="res://scripts/main.gd" id="1_r0wp8"]
 [ext_resource type="PackedScene" uid="uid://b1vaglwnxpkux" path="res://scenes/player.tscn" id="2_pr6jb"]
 [ext_resource type="Script" path="res://scripts/game_manager.gd" id="3_17le3"]
 [ext_resource type="PackedScene" uid="uid://b7sdbppq4b8l1" path="res://scenes/teleporter.tscn" id="4_4roo3"]
@@ -10,11 +11,12 @@
 [ext_resource type="Texture2D" uid="uid://v2omlko1kjyw" path="res://sprites/gradient.png" id="5_lio21"]
 [ext_resource type="PackedScene" uid="uid://dk0ek63221orb" path="res://scenes/apple.tscn" id="5_stemb"]
 [ext_resource type="Texture2D" uid="uid://b7ordk6dxm23c" path="res://sprites/Brown.png" id="6_guxe8"]
-[ext_resource type="PackedScene" uid="uid://cxgcling3dfde" path="res://scenes/spikes.tscn" id="7_bcdgq"]
+[ext_resource type="PackedScene" uid="uid://b2286h0y3tm2a" path="res://scenes/end.tscn" id="6_warus"]
+[ext_resource type="PackedScene" uid="uid://c1ex106p5vx35" path="res://scenes/level2.tscn" id="7_ni1ce"]
 [ext_resource type="Texture2D" uid="uid://b7385vjscby6w" path="res://sprites/Green.png" id="9_s812x"]
 [ext_resource type="PackedScene" uid="uid://ds2om8b03ueed" path="res://scenes/checkpoint.tscn" id="10_nohxg"]
 [ext_resource type="Texture2D" uid="uid://efhqunookldx" path="res://sprites/tree.png" id="12_h5j01"]
-[ext_resource type="Script" path="res://scripts/AppleTrigger.gd" id="14_3ouqk"]
+[ext_resource type="Script" path="res://scenes/AppleTrigger.gd" id="14_3ouqk"]
 [ext_resource type="Texture2D" uid="uid://cg8baj1qfd3nr" path="res://sprites/Sprite-0002.png" id="14_8em86"]
 [ext_resource type="Texture2D" uid="uid://deluw11jlyy1s" path="res://sprites/Sprite-0001.png" id="14_nfilx"]
 
@@ -782,6 +784,7 @@ sources/1 = SubResource("TileSetAtlasSource_c7kxx")
 sources/0 = SubResource("TileSetAtlasSource_l5iyy")
 
 [node name="Main" type="Node"]
+script = ExtResource("1_r0wp8")
 
 [node name="Tutorial" type="Node" parent="."]
 
@@ -789,12 +792,13 @@ sources/0 = SubResource("TileSetAtlasSource_l5iyy")
 
 [node name="Entities" type="Node" parent="Tutorial/Screen1"]
 
+[node name="EndNode" parent="Tutorial/Screen1/Entities" instance=ExtResource("6_warus")]
+visible = false
+position = Vector2(976, 464)
+target_level = ExtResource("7_ni1ce")
+
 [node name="Teleporter" parent="Tutorial/Screen1/Entities" instance=ExtResource("4_4roo3")]
 position = Vector2(192, 464)
-
-[node name="Spike" parent="Tutorial/Screen1/Entities" instance=ExtResource("7_bcdgq")]
-position = Vector2(712, 472)
-scale = Vector2(1, 1)
 
 [node name="UI" type="CanvasLayer" parent="Tutorial/Screen1"]
 follow_viewport_enabled = true
@@ -899,7 +903,6 @@ script = ExtResource("14_3ouqk")
 position = Vector2(2896, 352)
 collision_layer = 8
 collision_mask = 4
-monitoring = false
 monitorable = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Tutorial/Screen3/Entities/AppleTrigger/Area2D"]
@@ -968,9 +971,8 @@ position = Vector2(3496, 272)
 [node name="Checkpoint2" parent="Tutorial/Screen4/Entities" instance=ExtResource("10_nohxg")]
 position = Vector2(3480, 464)
 
-[node name="Teleporter2" parent="Tutorial/Screen4/Entities" node_paths=PackedStringArray("target_teleporter") instance=ExtResource("4_4roo3")]
+[node name="Teleporter2" parent="Tutorial/Screen4/Entities" instance=ExtResource("4_4roo3")]
 position = Vector2(4016, 416)
-target_teleporter = NodePath("../../../Screen1/Entities/Teleporter")
 
 [node name="UI" type="CanvasLayer" parent="Tutorial/Screen4"]
 follow_viewport_enabled = true
@@ -987,7 +989,6 @@ unique_name_in_owner = true
 script = ExtResource("3_17le3")
 
 [node name="WorldBuildHelperTexture" type="TextureRect" parent="."]
-visible = false
 z_index = -999
 texture_filter = 1
 offset_left = -1024.0
@@ -1036,25 +1037,6 @@ position = Vector2(192, 440)
 texture_filter = 1
 anchor_mode = 0
 position_smoothing_speed = 50.0
-
-[node name="LevelPanel" type="Panel" parent="MainCamera"]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 920.0
-offset_top = 16.0
-offset_right = 920.0
-offset_bottom = 16.0
-grow_horizontal = 2
-grow_vertical = 2
-size_flags_horizontal = 4
-
-[node name="Text" type="Label" parent="MainCamera/LevelPanel"]
-layout_mode = 2
-offset_right = 45.0
-offset_bottom = 23.0
-text = "-"
-horizontal_alignment = 2
 
 [node name="ResetUI" type="CenterContainer" parent="MainCamera"]
 visible = false

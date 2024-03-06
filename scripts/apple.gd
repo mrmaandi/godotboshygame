@@ -1,25 +1,28 @@
-extends Area2D
+extends CharacterBody2D
 
 @export var move_dir: Vector2
-@export var speed: float = 300.0
+@export var speed: float
 
 var is_moving = false
 
-var start_pos: Vector2
-var target_pos: Vector2
-
-func _ready():
-	start_pos = global_position
-	target_pos = start_pos + move_dir
-
-func _process(delta):
+func _physics_process(delta):
 	if is_moving:
-		print("move toward")
-		global_position = global_position.move_toward(target_pos, speed * delta)
+		var collision = move_and_collide(move_dir * delta * speed)
+		if collision:
+			var collider = collision.get_collider()
+			if collider is TileMap:
+				print("collide with TileMap")
+				queue_free()
 
-func _on_body_entered(body):
-	if (body.name == "Player"):
-		body.hit()
 
 func notify():
 	is_moving = true
+
+#func _on_area_2d_area_entered(area):
+#	if area.get_parent() is Player:
+#		area.get_parent().hit()
+
+func _on_area_2d_body_entered(body):
+	if body is TileMap:
+		# could play explode animation here
+		queue_free()

@@ -1,4 +1,8 @@
 extends CharacterBody2D
+class_name Player
+
+const TERRAIN_LAYER = 1 << 0
+const SPIKES_LAYER = 1 << 1
 
 const SPEED = 300.0
 const SLOWDOWN_SPEED = 100
@@ -9,6 +13,7 @@ const MAX_VELOCITY = -1000
 @onready var game_manager = %GameManager
 
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
+
 
 func _physics_process(delta):
 	if not game_manager.is_alive:
@@ -46,10 +51,20 @@ func _physics_process(delta):
 		velocity.x = move_toward(velocity.x, 0, SLOWDOWN_SPEED)
 
 	move_and_slide()
+	
+	for i in get_slide_collision_count():
+		var collision = get_slide_collision(i)
+		var collider = collision.get_collider()
+		#if collider is SpikeTileMap:
+			#print(collider)
 
 func hit():
-	game_manager.kill_player()
+	game_manager.handle_player_death()
 	sprite_2d.animation = "death"
+	
+func _on_hit_box_body_entered(body):
+	# only should collide with Damagable layer
+	hit()
 
 func _on_animated_sprite_2d_animation_finished():
 	match sprite_2d.animation:
@@ -57,3 +72,5 @@ func _on_animated_sprite_2d_animation_finished():
 			sprite_2d.visible = false
 		_:
 			pass
+
+

@@ -2,13 +2,20 @@
 
 [ext_resource type="Texture2D" uid="uid://v2omlko1kjyw" path="res://sprites/gradient.png" id="1_efsve"]
 
-[node name="TextureRect" type="TextureRect"]
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 0
 offset_right = 432.0
 offset_bottom = 159.0
 size_flags_horizontal = 4
 size_flags_vertical = 4
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+offset_right = 432.0
+offset_bottom = 159.0
 texture = ExtResource("1_efsve")
-expand_mode = 1
+expand_mode = 3
 
 [node name="Label" type="Label" parent="."]
 layout_mode = 1
@@ -22,7 +29,7 @@ offset_bottom = -94.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_font_sizes/font_size = 22
-text = "Jumping"
+text = "Move and jump"
 autowrap_mode = 2
 
 [node name="Description" type="Label" parent="."]
@@ -37,6 +44,7 @@ offset_bottom = -35.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_font_sizes/font_size = 14
-text = "You can press W or Space to jump
+text = "Move with WASD
+You can press W or Space to jump
 Press twice to perform a double-jump"
 autowrap_mode = 2

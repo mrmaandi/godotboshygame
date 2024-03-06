@@ -1,4 +1,1 @@
-# godotboshygame
-Game Jam game
-
-Readme
+# Game Jam game

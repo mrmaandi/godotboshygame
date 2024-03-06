@@ -19,7 +19,7 @@ boot_splash/show_image=false
 boot_splash/image="res://sprites/Jump (32x32).png"
 boot_splash/fullsize=false
 boot_splash/use_filter=false
-config/icon="res://sprites/icon.svg"
+config/icon="res://sprites/Fall (32x32).png"
 
 [autoload]
 
@@ -64,11 +64,13 @@ reset={
 [layer_names]
 
 2d_physics/layer_1="Terrain"
-2d_physics/layer_2="Projectile"
+2d_physics/layer_2="Damaging"
 2d_physics/layer_3="Player"
+2d_physics/layer_4="Interactable"
 
 [physics]
 
+common/physics_ticks_per_second=120
 2d/default_gravity=2500.0
 
 [rendering]
