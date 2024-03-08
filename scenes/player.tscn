@@ -259,6 +259,8 @@ texture_filter = 1
 position = Vector2(1, 0)
 sprite_frames = SubResource("SpriteFrames_mgtvo")
 autoplay = "default"
+frame = 8
+frame_progress = 0.106613
 
 [node name="HitBox" type="Area2D" parent="."]
 collision_layer = 4
