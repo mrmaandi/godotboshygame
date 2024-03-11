@@ -3,43 +3,30 @@ extends Node
 var can_jump = true
 var is_alive = true
 
+var cam_x_index = 0
+var cam_y_index = 0
+
 @onready var player = %Player
 @onready var main_camera = $"../MainCamera"
 @onready var reset_ui = $"../MainCamera/ResetUI"
-@onready var text = $"../MainCamera/LevelPanel/Text"
+@onready var level_text = $"../MainCamera/LevelPanel/Text"
 
 @onready var area_2d = $"../Tutorial/Screen3/Entities/AppleTrigger/Area2D"
+@onready var spike_trigger_area_2d = $"../Tutorial/Screen2/Entities/SpikeTriggerArea2D"
+@onready var hint_box = $"../MainCamera/HintBox"
 
-
-var screen_width = 1024
-var screen_height = 576
-
-var current_cam_x = 0
-var current_cam_y = 0
 
 func _ready():
 	player.position = Global.respawn_point
-	text.text = "Level: " + str(Global.level)
+	level_text.text = "Level: " + str(Global.level)
 	prepare_level()
 
 func reset_jump():
 	can_jump = true
 
 func _process(delta):
-	var current_cam_x_index = floor(player.position.x / screen_width)
-	var current_cam_y_index = floor(player.position.y / screen_height)
-	var cam_x = screen_width * current_cam_x_index
-	var cam_y = screen_height * current_cam_y_index
-	
 	if Input.is_action_just_pressed('reset'):
 		reset_player()
-	
-	if (current_cam_x != cam_x || current_cam_y != cam_y):
-		print("switch cam pos")
-		current_cam_x = cam_x
-		current_cam_y = cam_y
-		
-		main_camera.position = Vector2(current_cam_x, current_cam_y)
 		
 func reset_player():
 	get_tree().reload_current_scene()
@@ -51,12 +38,14 @@ func handle_player_death():
 func go_to_next_level():
 	get_tree().reload_current_scene()
 	Global.level = Global.level + 1
-	text.text = "Level: " + str(Global.level)
+	level_text.text = "Level: " + str(Global.level)
 	
 func prepare_level():
 	match Global.level:
 		2:
-			print("2")
 			area_2d.set_deferred("monitoring", true)
+		3:
+			area_2d.set_deferred("monitoring", true)
+			spike_trigger_area_2d.set_deferred("monitoring", true)
 		_:
 			pass

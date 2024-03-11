@@ -1,35 +1,28 @@
 [gd_scene load_steps=2 format=3 uid="uid://dbeb6tl74c2a8"]
 
-[ext_resource type="Texture2D" uid="uid://v2omlko1kjyw" path="res://sprites/gradient.png" id="1_efsve"]
+[ext_resource type="Script" path="res://scripts/hintbox.gd" id="1_kigy1"]
 
-[node name="Control" type="Control"]
-layout_mode = 3
-anchors_preset = 0
-offset_right = 432.0
-offset_bottom = 159.0
+[node name="Panel" type="Panel"]
+visible = false
+offset_right = 320.0
+offset_bottom = 128.0
 size_flags_horizontal = 4
 size_flags_vertical = 4
-
-[node name="TextureRect" type="TextureRect" parent="."]
-layout_mode = 1
-offset_right = 432.0
-offset_bottom = 159.0
-texture = ExtResource("1_efsve")
-expand_mode = 3
+script = ExtResource("1_kigy1")
 
 [node name="Label" type="Label" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 57.0
-offset_top = 34.0
-offset_right = -41.0
-offset_bottom = -94.0
+offset_left = 64.0
+offset_top = 32.0
+offset_right = -34.0
+offset_bottom = -96.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_font_sizes/font_size = 22
-text = "Move and jump"
+theme_override_font_sizes/font_size = 18
+text = "Label"
 autowrap_mode = 2
 
 [node name="Description" type="Label" parent="."]
@@ -37,14 +30,13 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 57.0
-offset_top = 81.0
-offset_right = -41.0
-offset_bottom = -35.0
+offset_left = 64.0
+offset_top = 64.0
+offset_right = -34.0
+offset_bottom = -47.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_font_sizes/font_size = 14
-text = "Move with WASD
-You can press W or Space to jump
-Press twice to perform a double-jump"
+theme_override_colors/font_color = Color(0.784314, 0.784314, 0.784314, 1)
+theme_override_font_sizes/font_size = 10
+text = "Description"
 autowrap_mode = 2

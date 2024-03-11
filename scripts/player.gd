@@ -65,7 +65,6 @@ func hit():
 	audio_stream_player.play()
 	sprite_2d.animation = "death"
 	
-	
 func _on_hit_box_body_entered(body):
 	# only should collide with Damagable layer
 	hit()

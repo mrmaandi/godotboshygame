@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://bq2cj167yi2q2"]
+
+[ext_resource type="Texture2D" uid="uid://deluw11jlyy1s" path="res://sprites/Sprite-0001.png" id="1_u8y2t"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_d7ysd"]
+
+[node name="StaticBody2D" type="StaticBody2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("1_u8y2t")
+region_enabled = true
+region_rect = Rect2(16, 16, 16, 16)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_d7ysd")
